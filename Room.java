@@ -21,7 +21,18 @@ public void setNeighbors(Room n, Room s, Room e, Room w) {}
 
 public void setEnemy(Enemy e) {}
 
-public void search() {}
+public int search(Player p) {
+    if (isSearched == false) {
+        p.addKeys(1);
+        System.out.println("You have found one key!");
+        isSearched = true;
+    }
+    else {
+        System.out.println("You have already searched this room");
+    }
+    return p.getKeys();
+
+}
 
 public void enterRoom(Player p) {}
 

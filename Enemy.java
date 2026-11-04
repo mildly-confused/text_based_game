@@ -6,7 +6,7 @@ public class Enemy {
 
     public Enemy() {
         this.health = 3;
-        this.description = "badEnemy";
+        this.description = "basilisk";
     }
 
     public boolean isAlive() {
