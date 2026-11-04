@@ -27,7 +27,7 @@ public class Player {
     }
 
     public void attack(Enemy e) {
-        e.health--;
+        e.getHealth--;
     }
 
     public void changeRooms(Room r) {
