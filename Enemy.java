@@ -6,7 +6,7 @@ public class Enemy {
 
     public Enemy() {
         this.health = 3;
-        this.description = badEnemy;
+        this.description = "badEnemy";
     }
 
     public boolean isAlive() {
@@ -23,7 +23,7 @@ public class Enemy {
     }
 
     public void attack(Player p) {
-        p.getHealth--;
+        p.takeDamage(1);
     }
 
     public String getDescription() {
