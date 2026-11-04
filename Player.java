@@ -1,7 +1,7 @@
 package text_based_game;
 
 public class Player {
-    private int health;
+    private int health = 5;
     private Room currentRoom;
     private int hasKeys;
 
@@ -27,7 +27,7 @@ public class Player {
     }
 
     public void attack(Enemy e) {
-        e.getHealth--;
+        e.takeDamage(1);
     }
 
     public void changeRooms(Room r) {
