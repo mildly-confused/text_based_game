@@ -35,7 +35,17 @@ public int search(Player p) {
 }
 
 public void enterRoom(Player p, Room n) {
-    p.changeRooms(n);
+    if (n.isLocked && p.hasKey()) {
+        p.subtractKeys(1);
+        p.changeRooms(n);
+    }
+    else if (n.isLocked && !(p.hasKey())) {
+        System.out.println("The room is locked and you do not have a key. You are out of luck.");
+
+    }
+    else if (!(n.isLocked)) {
+        p.changeRooms(n);
+    }
 }
 
 public String getDescription() {

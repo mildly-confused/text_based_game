@@ -3,18 +3,22 @@ package text_based_game;
 public class Player {
     private int health = 5;
     private Room currentRoom;
-    private int hasKeys;
+    private int keys;
 
     public Player(Room r) {
         r = currentRoom;
     }
 
-    public void addKeys(int keys) {
-        hasKeys += keys;
+    public void addKeys(int k) {
+        keys += k;
+    }
+    
+    public void subtractKeys(int n) {
+        keys -= n;
     }
 
     public boolean hasKey() {
-        if (hasKeys > 0) {
+        if (keys > 0) {
             return true;
         }
         else {
@@ -35,7 +39,7 @@ public class Player {
     }
 
     public int getKeys() {
-        return hasKeys;
+        return keys;
     }
 
     public int getHealth() {
@@ -45,4 +49,5 @@ public class Player {
     public Room getRoom() {
         return currentRoom;
     }
+    
 }
