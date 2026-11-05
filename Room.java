@@ -35,13 +35,16 @@ public int search(Player p) {
 }
 
 public void enterRoom(Player p, Room n) {
+    //if () THINGS WITH NAVIGATION 
     if (n.isLocked && p.hasKey()) {
         p.subtractKeys(1);
         p.changeRooms(n);
+        isLocked = false;
+        System.out.println("You may enter. This room is " + n.getDescription());
     }
     else if (n.isLocked && !(p.hasKey())) {
         System.out.println("The room is locked and you do not have a key. You are out of luck.");
-
+        isLocked = true;
     }
     else if (!(n.isLocked)) {
         p.changeRooms(n);
