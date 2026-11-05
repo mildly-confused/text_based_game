@@ -6,7 +6,7 @@ public class Player {
     private int keys;
 
     public Player(Room r) {
-        r = currentRoom;
+        currentRoom = r;
     }
 
     public void addKeys(int k) {
