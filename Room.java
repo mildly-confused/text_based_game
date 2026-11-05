@@ -34,7 +34,9 @@ public int search(Player p) {
 
 }
 
-public void enterRoom(Player p) {}
+public void enterRoom(Player p, Room n) {
+    p.changeRooms(n);
+}
 
 public String getDescription() {
     return description;
