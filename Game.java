@@ -3,9 +3,9 @@ package text_based_game;
 import java.util.Scanner;
 
 public class Game {
-    Enemy e = new Enemy(); 
+   // Enemy e = new Enemy(); 
     //Room firstRoom = new Room("gates", true, false);
-    Player p = new Player(start);
+    //Player p = new Player(start);
 
     public void setUpGame() {
         System.out.println("Welcome to the caves.");
@@ -15,13 +15,24 @@ public class Game {
         Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Room cavern = new Room("Large cavern with three diverging paths. Each goes to a glowing cave, one yellow, one green, one blue.", false, false);
         Room yellow = new Room("Treasure room. Piles of treasure everywhere. You look around in awe. Make the right choice.", true, false);
-      //  Room green = new Room("")
-        
-        
-        
+        Room green = new Room("Jungle room. The air is humid. Make the right choice.", true, false);
+        Room blue = new Room("Water room. There is a lake flowing through, into a mysterious cavern further onwards. You shiver. It's cold. And the water seems to be rising. Make the right choice.", true, false);
+        Room water = new Room("A river branches off from the lake, flowing into a mysterious cavern. The hairs on your arm stand up and you feel the fight approaching.", false, false);
+        Room island = new Room("You look up. An enormous basilisk looms over you. It is at least ten times your size. Good luck.", false, true);
+
+        Player p = new Player(start);
+        Enemy e = new Enemy(); 
+
         
         
         //set all neighbors of all rooms
+        start.setNeighbors(cavern, null, null, null);
+        cavern.setNeighbors(blue, start, yellow, green);
+        yellow.setNeighbors(null, null, null, cavern);
+        green.setNeighbors(null, null, cavern, null);
+        blue.setNeighbors(water, cavern, null, null);
+        water.setNeighbors(island, blue, null, null);
+        island.setNeighbors(null, water, null, null);
     }
 
     public void gameLoop() {
@@ -32,7 +43,7 @@ public class Game {
         Scanner input = new Scanner(System.in);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         if (input.nextLine().equals("R")) {
-            p.changeRooms(firstRoom);
+            p.changeRooms(start);
         }
         else if (input.nextLine().equals("F")) {
             p.attack(e);
