@@ -6,7 +6,7 @@ public class Game {
    //Enemy e = new Enemy(); 
     //Room firstRoom = new Room("gates", true, false);
     //Player p = new Player(start);
-    Game ourGame = new Game();
+    //Game ourGame = new Game();
 
     public void setUpGame() {
          
@@ -49,6 +49,7 @@ public class Game {
             System.out.println("Welcome to the caves.");
             System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
             p.changeRooms(start);
+            start.getDescription();
         }
         if (input.nextLine().equals("exit")) {
             System.exit(0);
