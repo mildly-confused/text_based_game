@@ -3,9 +3,10 @@ package text_based_game;
 import java.util.Scanner;
 
 public class Game {
-   // Enemy e = new Enemy(); 
+   //Enemy e = new Enemy(); 
     //Room firstRoom = new Room("gates", true, false);
     //Player p = new Player(start);
+    Game ourGame = new Game();
 
     public void setUpGame() {
         System.out.println("Welcome to the caves.");
@@ -35,11 +36,32 @@ public class Game {
         island.setNeighbors(null, water, null, null);
     }
 
-    public void gameLoop() {
-        
+    public void gameLoop()
+{
+    boolean gameOver = false;
+    while (!gameOver)
+    {
+        Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
+        Player p = new Player(start);
+        Scanner input = new Scanner(System.in);
+        p.getRoom();
+        start.hasEnemy();
+        System.out.println("Type the word start to begin. Type the word exit to end the program.");
+        if (input.nextLine().equals("start")){
+            ourGame.setUpGame();
+        }
+        if (input.nextLine().equals("exit")) {
+            System.exit(0);
+        }
+        else {
+            System.out.println("Invalid input. Please try again.");
+        }
+        input.close();
     }
+}
 
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
+        Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         if (input.nextLine().equals("R")) {
