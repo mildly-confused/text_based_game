@@ -9,8 +9,6 @@ public class Game {
     Game ourGame = new Game();
 
     public void setUpGame() {
-        System.out.println("Welcome to the caves.");
-        System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
          
         //initialize all rooms
         Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
@@ -21,8 +19,8 @@ public class Game {
         Room water = new Room("A river branches off from the lake, flowing into a mysterious cavern. The hairs on your arm stand up and you feel the fight approaching.", false, false);
         Room island = new Room("You look up. An enormous basilisk looms over you. It is at least ten times your size. Good luck.", false, true);
 
-        Player p = new Player(start);
-        Enemy e = new Enemy(); 
+        //Player p = new Player(start);
+        //Enemy e = new Enemy(); 
 
         
         
@@ -48,7 +46,9 @@ public class Game {
         start.hasEnemy();
         System.out.println("Type the word start to begin. Type the word exit to end the program.");
         if (input.nextLine().equals("start")){
-            ourGame.setUpGame();
+            System.out.println("Welcome to the caves.");
+            System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
+            p.changeRooms(start);
         }
         if (input.nextLine().equals("exit")) {
             System.exit(0);
