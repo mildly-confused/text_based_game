@@ -39,7 +39,7 @@ public class Game {
         
     }
 
-    public void theresAnEnemy() { //write separate method and steps if enemy has more than three lives for final
+    public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
         Scanner input = new Scanner(System.in);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         if (input.nextLine().equals("R")) {
