@@ -32,26 +32,26 @@ public class Game {
         blue.setNeighbors(water, cavern, null, null);
         water.setNeighbors(island, blue, null, null);
         island.setNeighbors(null, water, null, null);
-    }
 
-    public void gameLoop()
-{
-    boolean gameOver = false;
-    while (!gameOver)
-    {
+
+        //gamesetup and asking for want to start?
         Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Player p = new Player(start);
         Scanner input = new Scanner(System.in);
-        p.getRoom();
+    boolean gameOver = false;
+    while (!gameOver)
+    {
+        p.getRoom(); // are these  meant to be printed?
         start.hasEnemy();
         System.out.println("Type the word start to begin. Type the word exit to end the program.");
-        if (input.nextLine().equals("start")){
+        String check = input.next();
+        if (check.equals("start")){
             System.out.println("Welcome to the caves.");
             System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
             p.changeRooms(start);
             start.getDescription();
         }
-        if (input.nextLine().equals("exit")) {
+        else if (check.equals("exit")) {
             System.exit(0);
         }
         else {
@@ -60,9 +60,40 @@ public class Game {
         input.close();
     }
 }
+    }
+
+    public void gameLoop()
+{
+    /*
+    Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
+        Player p = new Player(start);
+        Scanner input = new Scanner(System.in);
+    boolean gameOver = false;
+    while (!gameOver)
+    {
+        p.getRoom(); // are these  meant to be printed?
+        start.hasEnemy();
+        System.out.println("Type the word start to begin. Type the word exit to end the program.");
+        String check = input.next();
+        if (check.equals("start")){
+            System.out.println("Welcome to the caves.");
+            System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
+            p.changeRooms(start);
+            start.getDescription();
+        }
+        else if (check.equals("exit")) {
+            System.exit(0);
+        }
+        else {
+            System.out.println("Invalid input. Please try again.");
+        }
+        input.close(); 
+        
+    }**/
+}
 
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
-        Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
+       // Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         if (input.nextLine().equals("R")) {
