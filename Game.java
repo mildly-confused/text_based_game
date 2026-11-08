@@ -3,9 +3,8 @@ package text_based_game;
 import java.util.Scanner;
 
 public class Game {
-   //Enemy e = new Enemy(); 
-    //Room firstRoom = new Room("gates", true, false);
-    //Player p = new Player(start);
+   Enemy e = new Enemy(); 
+    Player p = new Player(start);
     //Game ourGame = new Game();
 
     public void setUpGame() {
@@ -35,8 +34,7 @@ public class Game {
 
 
         //gamesetup and asking for want to start?
-        Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
-        Player p = new Player(start);
+       // Player p = new Player(start);
         Scanner input = new Scanner(System.in);
     boolean gameOver = false;
     while (!gameOver)
@@ -50,20 +48,24 @@ public class Game {
             System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
             p.changeRooms(start);
             start.getDescription();
+            gameOver = true; //not actually true, but will kick us out of the game loop
         }
         else if (check.equals("exit")) {
+            gameOver = true;
             System.exit(0);
         }
         else {
             System.out.println("Invalid input. Please try again.");
         }
-        input.close();
+       // input.close();  not in loop
+       
     }
 }
-    }
+    
 
     public void gameLoop()
 {
+    setUpGame();
     /*
     Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Player p = new Player(start);
@@ -89,7 +91,7 @@ public class Game {
         }
         input.close(); 
         
-    }**/
+    }*/
 }
 
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
@@ -116,7 +118,7 @@ public class Game {
                 p.attack(e);
             }
             else {
-                System.out.println("The basilisk attacks you two more times and you lose two more lives. Then, it runs away.")
+                System.out.println("The basilisk attacks you two more times and you lose two more lives. Then, it runs away.");
                 e.attack(p);
                 e.attack(p);
             }
@@ -124,3 +126,4 @@ public class Game {
 
     }
 }
+
