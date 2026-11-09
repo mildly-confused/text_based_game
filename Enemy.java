@@ -29,5 +29,9 @@ public class Enemy {
     public String getDescription() {
         return description;
     }
+    
+    public int getHealth() {
+        return health;
+    }
 
 }

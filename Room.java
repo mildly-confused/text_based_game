@@ -109,4 +109,12 @@ else
     return false;
 }
 
+public boolean getHasTreasure() {
+    return hasTreasure;
+}
+
+public boolean getIsSearched() {
+    return isSearched;
+}
+
 }

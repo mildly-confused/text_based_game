@@ -4,11 +4,12 @@ import java.util.Scanner;
 
 public class Game {
    
-    //Game ourGame = new Game();
 
-    public void setUpGame() {
-         
-        //initialize all rooms
+  //CHANGED GAME TO ONE METHOD, REFACTORED CODE TO BE MORE CONCISE AND ACTUALLY WORK
+
+    public void gameLoop()
+{
+    //initialize all rooms
         Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Room cavern = new Room("Large cavern with three diverging paths. Each goes to a glowing cave, one yellow, one green, one blue.", false, false);
         Room yellow = new Room("Treasure room. Piles of treasure everywhere. You look around in awe. Make the right choice.", true, false);
@@ -17,10 +18,7 @@ public class Game {
         Room water = new Room("A river branches off from the lake, flowing into a mysterious cavern. The hairs on your arm stand up and you feel the fight approaching.", false, false);
         Room island = new Room("You look up. An enormous basilisk looms over you. It is at least ten times your size. Good luck.", false, true);
 
-        //Player p = new Player(start);
-        //Enemy e = new Enemy(); 
-    Enemy e = new Enemy(); 
-    Player p = new Player(start);
+       
         
         
         //set all neighbors of all rooms
@@ -33,13 +31,9 @@ public class Game {
         island.setNeighbors(null, water, null, null);
 
 //initialize enemy by using constructors
-//thats it for this method
-     
-}
-    
+        Enemy basilisk = new Enemy();
 
-    public void gameLoop()
-{
+//thats it for this half of setting up
     
     Scanner input = new Scanner(System.in);
     boolean gameOver = false;
@@ -52,7 +46,7 @@ public class Game {
             System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
             p.changeRooms(start);
             System.out.println(start.getDescription());
-            gameOver = true; //not actually true, but will kick us out of the game loop
+            gameOver = false; //not actually true, but will kick us out of the game loop
         }
         else if (check.equals("exit")) {
             gameOver = true;
@@ -65,9 +59,47 @@ public class Game {
     while (!gameOver)
     {
        //check if enemy, fight sequence
+        if(p.currentRoom.equals(island)&& basilisk.getHealth()!=0) {
+                theresAnEnemy(p, basilisk);
+        } // sufficient? should print winning message here?
+
+//treasure checker
+        if(p.getRoom().getHasTreasure() && !(p.getRoom().getIsSearched())) {
+            System.out.println("This room is hiding something. Take a look around? Y for yes, N for no.");
+            String choice = input.next();
+            if (choice.equals("Y")) {
+                System.out.println("You have found something. Good choice.");
+                //add prompts and if statements for finding specific things
+            }
+            else if (choice.equals("N")) {
+                System.out.println("You will not be able to escape without searching. But oh well.");
+                boolean canEscape = false;
+            }
+            else {
+                System.out.println("Invalid Input.");
+            }
+        }
+
 
        //prompt for naviation input
+        System.out.println("Which direction would you like to move? Type N for north, E for east, S for south, W for west");
         //check if possible to move in those ways
+        String wD = input.next();
+        if (wD.equals("N")){
+            p.getRoom().enterRoom(p, "north", p.getRoom().getNeighbor("north"));
+        }
+        else if (wD.equals("E")){
+            
+        }
+        else if (wD.equals("S")){
+            
+        }
+        else if (wD.equals("E")){
+            
+        }
+        else {
+            System.out.println("invalid input");
+        }
         //if so, move and unlock and all the key things
 
         //print room info
@@ -82,7 +114,7 @@ public class Game {
 }
 
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
-       Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
+     //  Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         if (input.nextLine().equals("R")) {
