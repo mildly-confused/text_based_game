@@ -3,8 +3,7 @@ package text_based_game;
 import java.util.Scanner;
 
 public class Game {
-   Enemy e = new Enemy(); 
-    Player p = new Player(start);
+   
     //Game ourGame = new Game();
 
     public void setUpGame() {
@@ -20,7 +19,8 @@ public class Game {
 
         //Player p = new Player(start);
         //Enemy e = new Enemy(); 
-
+    Enemy e = new Enemy(); 
+    Player p = new Player(start);
         
         
         //set all neighbors of all rooms
@@ -32,22 +32,26 @@ public class Game {
         water.setNeighbors(island, blue, null, null);
         island.setNeighbors(null, water, null, null);
 
+//initialize enemy by using constructors
+//thats it for this method
+     
+}
+    
 
-        //gamesetup and asking for want to start?
-       // Player p = new Player(start);
-        Scanner input = new Scanner(System.in);
+    public void gameLoop()
+{
+    
+    Scanner input = new Scanner(System.in);
     boolean gameOver = false;
-    while (!gameOver)
-    {
-        p.getRoom(); // are these  meant to be printed?
-        start.hasEnemy();
+    Player p = new Player(start);
+
         System.out.println("Type the word start to begin. Type the word exit to end the program.");
         String check = input.next();
         if (check.equals("start")){
             System.out.println("Welcome to the caves.");
             System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
             p.changeRooms(start);
-            start.getDescription();
+            System.out.println(start.getDescription());
             gameOver = true; //not actually true, but will kick us out of the game loop
         }
         else if (check.equals("exit")) {
@@ -57,45 +61,28 @@ public class Game {
         else {
             System.out.println("Invalid input. Please try again.");
         }
-       // input.close();  not in loop
+
+    while (!gameOver)
+    {
+       //check if enemy, fight sequence
+
+       //prompt for naviation input
+        //check if possible to move in those ways
+        //if so, move and unlock and all the key things
+
+        //print room info
+
+        //prompt user to search and return item they found
+
+        //if its the endgame, check if final enemy is defeated and if so then print a winning message
+
+       
        
     }
 }
-    
-
-    public void gameLoop()
-{
-    setUpGame();
-    /*
-    Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
-        Player p = new Player(start);
-        Scanner input = new Scanner(System.in);
-    boolean gameOver = false;
-    while (!gameOver)
-    {
-        p.getRoom(); // are these  meant to be printed?
-        start.hasEnemy();
-        System.out.println("Type the word start to begin. Type the word exit to end the program.");
-        String check = input.next();
-        if (check.equals("start")){
-            System.out.println("Welcome to the caves.");
-            System.out.println("You are running out of air. You must escape. Collect the neccesary materials to fight the basilisk.");
-            p.changeRooms(start);
-            start.getDescription();
-        }
-        else if (check.equals("exit")) {
-            System.exit(0);
-        }
-        else {
-            System.out.println("Invalid input. Please try again.");
-        }
-        input.close(); 
-        
-    }*/
-}
 
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
-       // Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
+       Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         if (input.nextLine().equals("R")) {

@@ -2,7 +2,7 @@ package text_based_game;
 
 public class Player {
     private int health = 5;
-    private Room currentRoom;
+    public Room currentRoom;
     private int keys;
 
     public Player(Room r) {
