@@ -85,19 +85,33 @@ public class Game {
         System.out.println("Which direction would you like to move? Type N for north, E for east, S for south, W for west");
         //check if possible to move in those ways
         String wD = input.next();
+        Room g = p.getRoom();
         if (wD.equals("N")){
-            p.getRoom().enterRoom(p, "north");
+            if (g.getNeighbor("north") != null)
+            g.enterRoom(p, "north");
+           if (g.getNeighbor("north") == null) {
+            System.out.println("no room exists in that direction");
         }
         else if (wD.equals("E")){
+           if (g.getNeighbor("east") != null)
          p.getRoom().enterRoom(p, "east");
+            if (g.getNeighbor("east") == null) {
+            System.out.println("no room exists in that direction");
 
         }
+    }
         else if (wD.equals("S")){
-          p.getRoom().enterRoom(p, "south");
-
+           if (g.getNeighbor("south") != null);
+         p.getRoom().enterRoom(p, "south");
+           if (g.getNeighbor("south") == null) {
+            System.out.println("no room exists in that direction");
+          }
         }
         else if (wD.equals("W")){
+             if (g.getNeighbor("west") != null);
          p.getRoom().enterRoom(p, "west");
+              if (g.getNeighbor("west") == null) {
+            System.out.println("no room exists in that direction");
 
         }
         else {
@@ -114,6 +128,9 @@ public class Game {
        
        
     }
+}
+    }
+
 }
 
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
