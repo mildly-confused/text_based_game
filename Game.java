@@ -86,16 +86,19 @@ public class Game {
         //check if possible to move in those ways
         String wD = input.next();
         if (wD.equals("N")){
-            p.getRoom().enterRoom(p, "north", p.getRoom().getNeighbor("north"));
+            p.getRoom().enterRoom(p, "north");
         }
         else if (wD.equals("E")){
-            
+         p.getRoom().enterRoom(p, "east");
+
         }
         else if (wD.equals("S")){
-            
+          p.getRoom().enterRoom(p, "south");
+
         }
-        else if (wD.equals("E")){
-            
+        else if (wD.equals("W")){
+         p.getRoom().enterRoom(p, "west");
+
         }
         else {
             System.out.println("invalid input");

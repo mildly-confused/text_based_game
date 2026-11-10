@@ -52,8 +52,9 @@ public int search(Player p) {
 
 }
 
-public void enterRoom(Player p, String d, Room n) {
+public void enterRoom(Player p, String d) {
    if ((p.currentRoom.getNeighbor(d))!= null){
+    Room n = p.currentRoom.getNeighbor(d);
     if (p.currentRoom.getNeighbor(d).isLocked && p.hasKey()) {
         p.subtractKeys(1);
         p.changeRooms(p.currentRoom.getNeighbor(d));
