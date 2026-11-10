@@ -18,6 +18,7 @@ private Room n;
 private Room s;
 private Room e;
 private Room w;
+private Enemy basilisk;
 
 
 public Room(String description, boolean hasTreasure, boolean hasEnemy) {
@@ -34,7 +35,7 @@ this.w = w;
 }
 
 public void setEnemy(Enemy e) {
-    if (this.Room == island) {
+    if (this == island) {
         Enemy basilisk = new Enemy();
     } 
 }
@@ -52,9 +53,8 @@ public int search(Player p) {
 
 }
 
-public void enterRoom(Player p, String d) {
+public void enterRoom(Player p, String d, Room n) {
    if ((p.currentRoom.getNeighbor(d))!= null){
-    Room n = p.currentRoom.getNeighbor(d);
     if (p.currentRoom.getNeighbor(d).isLocked && p.hasKey()) {
         p.subtractKeys(1);
         p.changeRooms(p.currentRoom.getNeighbor(d));
