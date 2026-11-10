@@ -53,8 +53,8 @@ public int search(Player p) {
 
 }
 
-public void enterRoom(Player p, String d, Room n) {
-   if ((p.currentRoom.getNeighbor(d))!= null){
+public void enterRoom(Player p, String d) {
+   Room n = p.currentRoom.getNeighbor(d);
     if (p.currentRoom.getNeighbor(d).isLocked && p.hasKey()) {
         p.subtractKeys(1);
         p.changeRooms(p.currentRoom.getNeighbor(d));
@@ -68,7 +68,7 @@ public void enterRoom(Player p, String d, Room n) {
     else if (!(n.isLocked)) {
         p.changeRooms(n);
     }
-}
+
 
 else
     System.out.println("There is no room in that direction");

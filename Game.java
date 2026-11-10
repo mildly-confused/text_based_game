@@ -68,8 +68,91 @@ public class Game {
             System.out.println("This room is hiding something. Take a look around? Y for yes, N for no.");
             String choice = input.next();
             if (choice.equals("Y")) {
-                System.out.println("You have found something. Good choice.");
-                //add prompts and if statements for finding specific things
+                System.out.println("It seems like there's something valuable here. Good choice.");
+                start.search(p);
+                //check for treasure other than keys depending on rooms- do we want the start to have treasure in it? where are we going to incorporate weapons?
+                if (p.currentRoom == start) {
+                    System.out.println("There is nothing else in this room. You should move on.");
+                }
+                /*else if (p.currentRoom == cavern) {
+                    System.out.println("There is nothing else in this room. You should move on.");
+                } there's nothing in the cavern room at all right? */
+                else if (p.currentRoom == yellow) {
+                    System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
+                    if (choice.equals("Y")) {
+                        System.out.println("You'll need what's in here. Good choice.");
+                        System.out.println("You find two objects- a chest full of sparkling, alluring treasure and a set of armor. You may only take one. T for treasure, A for armor. Choose wisely.");
+                        if (choice.equals("T")) {
+                            System.out.println("Treasure isn't worth anything if you can't get out of the cave. Just saying.");
+                        }
+                        else if (choice.equals("A")) {
+                            System.out.println("Wise choice.");
+                        }
+                        //does this work to deal with invalid inputs?????
+                        else {
+                            System.out.println("Invalid input. Try again.");
+                            p.changeRooms(yellow);
+                        }
+                    }
+                    else if (choice.equals("N")) {
+                        System.out.println("Interesting choice. We'll see if you can get out, I guess.");
+                    }
+                    else {
+                        System.out.println("Invalid input. Try again.");
+                        p.changeRooms(yellow);
+                    }
+                }
+                else if (p.currentRoom == green) {
+                    System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
+                    if (choice.equals("Y")) {
+                        System.out.println("You'll need what's in here. Good choice.");
+                        //idk if these are the right objects or if we should make the user entry simpler
+                        System.out.println("You find two objects- a yummy looking mango and an important looking map. You may only take one. YM for yummy mango, IM for important map. Choose wisely.");
+                        if (choice.equals("YM")) {
+                            System.out.println("Hmm... I hope that mango was really, really good.");
+                        }
+                        else if (choice.equals("IM")) {
+                            System.out.println("Wise choice.");
+                        }
+                        else {
+                            System.out.println("Invalid input. Try again.");
+                            p.changeRooms(green);
+                        }
+                    }
+                    else if (choice.equals("N")) {
+                        System.out.println("Interesting choice. We'll see if you can get out, I guess.");
+                    }
+                    else {
+                        System.out.println("Invalid input. Try again.");
+                        p.changeRooms(green);
+                    }
+                }
+                //the only other option is for it to be the blue room if they've made it this far right????
+                else /*(p.currentRoom == blue) */{
+                    System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
+                    if (choice.equals("Y")) {
+                        System.out.println("You'll need what's in here. Good choice.");
+                        //idk if these are the right objects either
+                        System.out.println("You find two objects- what looks like all the materials you need to build a safe raft and a really pretty seashell. R for raft, S for seashell. Choose wisely.");
+                        if (choice.equals("S")) {
+                            System.out.println("That had better be the prettiest seashell that you've seen in your whole entire life.");
+                        }
+                        else if (choice.equals("R")) {
+                            System.out.println("Wise choice.");
+                        }
+                        else {
+                            System.out.println("Invalid input. Try again.");
+                            p.changeRooms(blue);
+                        }
+                    }
+                   else if (choice.equals("N")) {
+                        System.out.println("Interesting choice. We'll see if you can get out, I guess.");
+                    }
+                    else {
+                        System.out.println("Invalid input. Try again.");
+                        p.changeRooms(blue);
+                    }
+                }
             }
             else if (choice.equals("N")) {
                 System.out.println("You will not be able to escape without searching. But oh well.");
