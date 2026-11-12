@@ -10,7 +10,7 @@ public class Game {
     public void gameLoop()
 {
     //initialize all rooms
-        Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
+        Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
         Room cavern = new Room("Large cavern with three diverging paths. Each goes to a glowing cave, one yellow, one green, one blue.", false, false);
         Room yellow = new Room("Treasure room. Piles of treasure everywhere. You look around in awe. Make the right choice.", true, false);
         Room green = new Room("Jungle room. The air is humid. Make the right choice.", true, false);
@@ -64,10 +64,10 @@ public class Game {
         } // sufficient? should print winning message here?
 
 //treasure checker
-        if(p.getRoom().getHasTreasure() && !(p.getRoom().getIsSearched())) {
+        if(p.getRoom().getHasTreasure()|| !(p.getRoom().getIsSearched())) {
             System.out.println("This room is hiding something. Take a look around? Y for yes, N for no.");
-            String choice = input.next();
-            if (choice.equals("Y")) {
+            String choice1 = input.next();
+            if (choice1.equals("Y")) {
                 System.out.println("It seems like there's something valuable here. Good choice.");
                 start.search(p);
                 //check for treasure other than keys depending on rooms- do we want the start to have treasure in it? where are we going to incorporate weapons?
@@ -78,14 +78,16 @@ public class Game {
                     System.out.println("There is nothing else in this room. You should move on.");
                 } there's nothing in the cavern room at all right? */
                 else if (p.currentRoom == yellow) {
+                    String choice2 = input.next();
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
-                    if (choice.equals("Y")) {
+                    if (choice2.equals("Y")) {
                         System.out.println("You'll need what's in here. Good choice.");
                         System.out.println("You find two objects- a chest full of sparkling, alluring treasure and a set of armor. You may only take one. T for treasure, A for armor. Choose wisely.");
-                        if (choice.equals("T")) {
+                        String choice3 = input.next();
+                        if (choice3.equals("T")) {
                             System.out.println("Treasure isn't worth anything if you can't get out of the cave. Just saying.");
                         }
-                        else if (choice.equals("A")) {
+                        else if (choice3.equals("A")) {
                             System.out.println("Wise choice.");
                         }
                         //does this work to deal with invalid inputs?????
@@ -94,7 +96,7 @@ public class Game {
                             p.changeRooms(yellow);
                         }
                     }
-                    else if (choice.equals("N")) {
+                    else if (choice2.equals("N")) {
                         System.out.println("Interesting choice. We'll see if you can get out, I guess.");
                     }
                     else {
@@ -103,15 +105,17 @@ public class Game {
                     }
                 }
                 else if (p.currentRoom == green) {
+                    String choice4 = input.next();
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
-                    if (choice.equals("Y")) {
+                    if (choice4.equals("Y")) {
                         System.out.println("You'll need what's in here. Good choice.");
                         //idk if these are the right objects or if we should make the user entry simpler
                         System.out.println("You find two objects- a yummy looking mango and an important looking map. You may only take one. YM for yummy mango, IM for important map. Choose wisely.");
-                        if (choice.equals("YM")) {
+                        String choice5 = input.next();
+                        if (choice5.equals("YM")) {
                             System.out.println("Hmm... I hope that mango was really, really good.");
                         }
-                        else if (choice.equals("IM")) {
+                        else if (choice5.equals("IM")) {
                             System.out.println("Wise choice.");
                         }
                         else {
@@ -119,7 +123,7 @@ public class Game {
                             p.changeRooms(green);
                         }
                     }
-                    else if (choice.equals("N")) {
+                    else if (choice4.equals("N")) {
                         System.out.println("Interesting choice. We'll see if you can get out, I guess.");
                     }
                     else {
@@ -129,15 +133,17 @@ public class Game {
                 }
                 //the only other option is for it to be the blue room if they've made it this far right????
                 else /*(p.currentRoom == blue) */{
+                    String choice6 = input.next();
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
-                    if (choice.equals("Y")) {
+                    if (choice6.equals("Y")) {
+                        String choice7 = input.next();
                         System.out.println("You'll need what's in here. Good choice.");
                         //idk if these are the right objects either
                         System.out.println("You find two objects- what looks like all the materials you need to build a safe raft and a really pretty seashell. R for raft, S for seashell. Choose wisely.");
-                        if (choice.equals("S")) {
+                        if (choice7.equals("S")) {
                             System.out.println("That had better be the prettiest seashell that you've seen in your whole entire life.");
                         }
-                        else if (choice.equals("R")) {
+                        else if (choice7.equals("R")) {
                             System.out.println("Wise choice.");
                         }
                         else {
@@ -145,7 +151,7 @@ public class Game {
                             p.changeRooms(blue);
                         }
                     }
-                   else if (choice.equals("N")) {
+                   else if (choice6.equals("N")) {
                         System.out.println("Interesting choice. We'll see if you can get out, I guess.");
                     }
                     else {
@@ -154,7 +160,7 @@ public class Game {
                     }
                 }
             }
-            else if (choice.equals("N")) {
+            else if (choice1.equals("N")) {
                 System.out.println("You will not be able to escape without searching. But oh well.");
                 boolean canEscape = false;
             }
@@ -162,7 +168,7 @@ public class Game {
                 System.out.println("Invalid Input.");
             }
         }
-
+System.out.println("why isn't this working ahhh");
 
        //prompt for naviation input
         System.out.println("Which direction would you like to move? Type N for north, E for east, S for south, W for west");
@@ -171,7 +177,12 @@ public class Game {
         Room g = p.getRoom();
         if (wD.equals("N")){
             if (g.getNeighbor("north") != null)
+            {
             g.enterRoom(p, "north");
+            System.out.println("you entered the room");
+            System.out.println(p.getRoom().getDescription());
+
+            }
            if (g.getNeighbor("north") == null) {
             System.out.println("no room exists in that direction");
         }
@@ -219,6 +230,7 @@ public class Game {
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
      //  Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
+        Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         if (input.nextLine().equals("R")) {
             p.changeRooms(start);

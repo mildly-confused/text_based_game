@@ -19,12 +19,14 @@ private Room s;
 private Room e;
 private Room w;
 private Enemy basilisk;
+// add a description of the treasure in each room to the constructor
 
 
 public Room(String description, boolean hasTreasure, boolean hasEnemy) {
     this.description = description;
     this.hasTreasure = hasTreasure;
     this.hasEnemy = hasEnemy;
+    isSearched = false;
 }
 
 public void setNeighbors(Room n, Room s, Room e, Room w) {
@@ -41,12 +43,12 @@ public void setEnemy(Enemy e) {
 }
 
 public int search(Player p) {
-    if (isSearched == false) {
+    if (!isSearched) {
         p.addKeys(1);
         System.out.println("You have found one key!");
         isSearched = true;
     }
-    else {
+    else if (isSearched) {
         System.out.println("You have already searched this room");
     }
     return p.getKeys();
@@ -95,7 +97,7 @@ public Room getNeighbor(String direction) {
 }
 
 public Enemy getEnemy(Player p) {
-  if (p.currentRoom == island) {
+  if (p.currentRoom == island) { //change this, need to override equals method
     return basilisk;
   }
   else 
