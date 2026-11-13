@@ -64,22 +64,27 @@ public class Game {
         } // sufficient? should print winning message here?
 
 //treasure checker
-        if(p.getRoom().getHasTreasure()|| !(p.getRoom().getIsSearched())) {
+        if((p.getRoom()).getHasTreasure()|| !(p.getRoom().getIsSearched())) {
             System.out.println("This room is hiding something. Take a look around? Y for yes, N for no.");
             String choice1 = input.next();
             if (choice1.equals("Y")) {
                 System.out.println("It seems like there's something valuable here. Good choice.");
-                start.search(p);
+              //  start.search(p);
                 //check for treasure other than keys depending on rooms- do we want the start to have treasure in it? where are we going to incorporate weapons?
                 if (p.currentRoom == start) {
+                    start.search(p);
                     System.out.println("There is nothing else in this room. You should move on.");
                 }
-                /*else if (p.currentRoom == cavern) {
+                else if (p.currentRoom == cavern) {
+                    cavern.search(p);
                     System.out.println("There is nothing else in this room. You should move on.");
-                } there's nothing in the cavern room at all right? */
+                }
                 else if (p.currentRoom == yellow) {
-                    String choice2 = input.next();
+                    yellow.search(p);
+                   // String choice2 = input.next();
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
+                    String choice2 = input.next();
+
                     if (choice2.equals("Y")) {
                         System.out.println("You'll need what's in here. Good choice.");
                         System.out.println("You find two objects- a chest full of sparkling, alluring treasure and a set of armor. You may only take one. T for treasure, A for armor. Choose wisely.");
@@ -105,7 +110,8 @@ public class Game {
                     }
                 }
                 else if (p.currentRoom == green) {
-                    String choice4 = input.next();
+                    green.search(p);
+                    String choice4 = input.next(); //flip order?
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
                     if (choice4.equals("Y")) {
                         System.out.println("You'll need what's in here. Good choice.");
@@ -132,8 +138,9 @@ public class Game {
                     }
                 }
                 //the only other option is for it to be the blue room if they've made it this far right????
-                else /*(p.currentRoom == blue) */{
-                    String choice6 = input.next();
+                else if (p.currentRoom == blue) {
+                    blue.search(p);
+                    String choice6 = input.next(); //flip order?
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
                     if (choice6.equals("Y")) {
                         String choice7 = input.next();
@@ -168,7 +175,7 @@ public class Game {
                 System.out.println("Invalid Input.");
             }
         }
-System.out.println("why isn't this working ahhh");
+//System.out.println("why isn't this working ahhh");
 
        //prompt for naviation input
         System.out.println("Which direction would you like to move? Type N for north, E for east, S for south, W for west");
