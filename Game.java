@@ -251,7 +251,7 @@ public class Game {
 
 
 
-    public static void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
+    public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
      //  Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
        // Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
