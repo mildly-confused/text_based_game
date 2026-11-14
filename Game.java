@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class Game {
    
+    Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
 
   //CHANGED GAME TO ONE METHOD, REFACTORED CODE TO BE MORE CONCISE AND ACTUALLY WORK
 
     public void gameLoop()
 {
     //initialize all rooms
-        Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
+       // Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
         Room cavern = new Room("Large cavern with three diverging paths. Each goes to a glowing cave, one yellow, one green, one blue.", false, false);
         Room yellow = new Room("Treasure room. Piles of treasure everywhere. You look around in awe. Make the right choice.", true, false);
         Room green = new Room("Jungle room. The air is humid. Make the right choice.", true, false);
@@ -65,7 +66,7 @@ public class Game {
         } // sufficient? should print winning message here?
 
 //treasure checker
-        if((p.getRoom()).getHasTreasure()|| !(p.getRoom().getIsSearched())) {
+        if((p.getRoom()).getHasTreasure()&& !(p.getRoom().getIsSearched())) {
             System.out.println("This room is hiding something. Take a look around? Y for yes, N for no.");
             String choice1 = input.next();
             if (choice1.equals("Y")) {
@@ -112,8 +113,10 @@ public class Game {
                 }
                 else if (p.currentRoom == green) {
                     green.search(p);
-                    String choice4 = input.next(); //flip order?
+              //      String choice4 = input.next(); //flip order?
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
+                     String choice4 = input.next(); //flip order?
+
                     if (choice4.equals("Y")) {
                         System.out.println("You'll need what's in here. Good choice.");
                         //idk if these are the right objects or if we should make the user entry simpler
@@ -144,10 +147,15 @@ public class Game {
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
                     String choice6 = input.next(); 
                     if (choice6.equals("Y")) {
-                        String choice7 = input.next();
+                      //  String choice7 = input.next();
                         System.out.println("You'll need what's in here. Good choice.");
+                    //      String choice7 = input.next();
+
                         //idk if these are the right objects either
+                       
                         System.out.println("You find two objects- what looks like all the materials you need to build a safe raft and a really pretty seashell. R for raft, S for seashell. Choose wisely.");
+                         String choice7 = input.next();
+
                         if (choice7.equals("S")) {
                             System.out.println("That had better be the prettiest seashell that you've seen in your whole entire life.");
                         }
@@ -189,33 +197,41 @@ public class Game {
             g.enterRoom(p, "north");
             System.out.println("you entered the room");
             System.out.println(p.getRoom().getDescription());
-
             }
-           if (g.getNeighbor("north") == null) {
+         //  if (g.getNeighbor("north") == null) 
+            else {
             System.out.println("no room exists in that direction");
         } }
         else if (wD.equals("E")){
-           if (g.getNeighbor("east") != null)
-         p.getRoom().enterRoom(p, "east");
-            if (g.getNeighbor("east") == null) {
+           if (g.getNeighbor("east") != null) {
+         g.enterRoom(p, "east");
+        System.out.println("You entered the room");
+        System.out.println(p.getRoom().getDescription());
+           }
+        else {
             System.out.println("no room exists in that direction");
-
         }
     }
         else if (wD.equals("S")){
-           if (g.getNeighbor("south") != null)
+           if (g.getNeighbor("south") != null) {
          p.getRoom().enterRoom(p, "south");
-           if (g.getNeighbor("south") == null) {
+          // if (g.getNeighbor("south") == null) 
+          System.out.println("You entered the room");
+        System.out.println(p.getRoom().getDescription());
+        }
+          else {
             System.out.println("no room exists in that direction");
           }
         }
         else if (wD.equals("W")){
-             if (g.getNeighbor("west") != null)
-         p.getRoom().enterRoom(p, "west");
-              if (g.getNeighbor("west") == null) {
-            System.out.println("no room exists in that direction");
-
+             if (g.getNeighbor("west") != null) {         p.getRoom().enterRoom(p, "west");
+             // if (g.getNeighbor("west") == null) 
+          System.out.println("You entered the room");
+        System.out.println(p.getRoom().getDescription());      
         }
+             else {
+            System.out.println("no room exists in that direction");
+        } }
         else {
             System.out.println("invalid input");
         }
@@ -231,11 +247,11 @@ public class Game {
        
     }
 }
-    }
+    
 
-}
 
-    public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
+
+    public static void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
      //  Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
        // Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
@@ -267,6 +283,6 @@ public class Game {
             }
         }
 
-    }
-}
+    } }
+
 
