@@ -37,6 +37,7 @@ public class Game {
     
     Scanner input = new Scanner(System.in);
     boolean gameOver = false;
+    boolean canEscape = true;
     Player p = new Player(start);
 
         System.out.println("Type the word start to begin. Type the word exit to end the program.");
@@ -140,8 +141,8 @@ public class Game {
                 //the only other option is for it to be the blue room if they've made it this far right????
                 else if (p.currentRoom == blue) {
                     blue.search(p);
-                    String choice6 = input.next(); //flip order?
                     System.out.println("There is something else in this room. Keep looking? Y for yes, N for no.");
+                    String choice6 = input.next(); 
                     if (choice6.equals("Y")) {
                         String choice7 = input.next();
                         System.out.println("You'll need what's in here. Good choice.");
@@ -169,7 +170,7 @@ public class Game {
             }
             else if (choice1.equals("N")) {
                 System.out.println("You will not be able to escape without searching. But oh well.");
-                boolean canEscape = false;
+                canEscape = false;
             }
             else {
                 System.out.println("Invalid Input.");
@@ -192,7 +193,7 @@ public class Game {
             }
            if (g.getNeighbor("north") == null) {
             System.out.println("no room exists in that direction");
-        }
+        } }
         else if (wD.equals("E")){
            if (g.getNeighbor("east") != null)
          p.getRoom().enterRoom(p, "east");
@@ -202,14 +203,14 @@ public class Game {
         }
     }
         else if (wD.equals("S")){
-           if (g.getNeighbor("south") != null);
+           if (g.getNeighbor("south") != null)
          p.getRoom().enterRoom(p, "south");
            if (g.getNeighbor("south") == null) {
             System.out.println("no room exists in that direction");
           }
         }
         else if (wD.equals("W")){
-             if (g.getNeighbor("west") != null);
+             if (g.getNeighbor("west") != null)
          p.getRoom().enterRoom(p, "west");
               if (g.getNeighbor("west") == null) {
             System.out.println("no room exists in that direction");
@@ -237,12 +238,13 @@ public class Game {
     public void theresAnEnemy(Player p, Enemy e) { //write separate method and steps if enemy has more than three lives for final
      //  Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
-        Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
+       // Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
-        if (input.nextLine().equals("R")) {
+        String f = input.nextLine();
+        if (f.equals("R")) {
             p.changeRooms(start);
         }
-        else if (input.nextLine().equals("F")) {
+        else if (f.equals("F")) {
             p.attack(e);
             e.attack(p);
             System.out.println("You've been hit and lost one life! Do you want to attack again? Type Y for yes and N for no");
