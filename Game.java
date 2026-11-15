@@ -12,10 +12,10 @@ public class Game {
 {
     //initialize all rooms
        // Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
-        Room cavern = new Room("Large cavern with three diverging paths. Each goes to a glowing cave, one yellow, one green, one blue.", false, false);
-        Room yellow = new Room("Treasure room. Piles of treasure everywhere. You look around in awe. Make the right choice.", true, false);
-        Room green = new Room("Jungle room. The air is humid. Make the right choice.", true, false);
-        Room blue = new Room("Water room. There is a lake flowing through, into a mysterious cavern further onwards. You shiver. It's cold. And the water seems to be rising. Make the right choice.", true, false);
+        Room cavern = new Room("You find yourself in a large cavern with three diverging paths. Each goes to a glowing cave: one yellow, one green, one blue.", false, false);
+        Room yellow = new Room("You find yourself in a room with piles of treasure everywhere. You look around in awe.", true, false);
+        Room green = new Room("You find yourself in a room that looks like a jungle. There is thick green foliage everywhere, and the air is humid.", true, false);
+        Room blue = new Room("You find yourself in a room with a huge turquoise lake in it,which flows into a mysterious cavern further onwards. You shiver. It's frigid. And the water seems to be rising.", true, false);
         Room water = new Room("A river branches off from the lake, flowing into a mysterious cavern. The hairs on your arm stand up and you feel the fight approaching.", false, false);
         Room island = new Room("You look up. An enormous basilisk looms over you. It is at least ten times your size. Good luck.", false, true);
 
