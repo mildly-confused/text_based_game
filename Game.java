@@ -56,6 +56,7 @@ public class Game {
         }
         else {
             System.out.println("Invalid input. Please try again.");
+            p.changeRooms(start);
         }
 
     while (!gameOver)
@@ -182,6 +183,7 @@ public class Game {
             }
             else {
                 System.out.println("Invalid Input.");
+                p.changeRooms(start);
             }
         }
 //System.out.println("why isn't this working ahhh");
@@ -194,9 +196,28 @@ public class Game {
         if (wD.equals("N")){
             if (g.getNeighbor("north") != null)
             {
-            g.enterRoom(p, "north");
-            System.out.println("you entered the room");
-            System.out.println(p.getRoom().getDescription());
+                if (p.getRoom() == water) {
+                    System.out.println("Wait... do you have your materials to built a raft and a map to navigate the river? If you don't, you must turn around. If you have your materials, type Y. If not, type N.");
+                    String hI = input.next();
+                    if (hI.equals("Y")) {
+                         g.enterRoom(p, "north");
+                        System.out.println("You entered the room");
+                        System.out.println(p.getRoom().getDescription());
+                    }
+                    else if (hI.equals("N")) {
+                        p.changeRooms(start);
+                        System.out.println("You're back in the starting room. Try to make better choices this time.");
+                    }
+                    else {
+                        System.out.println("Invalid input. Try again.");
+                        p.changeRooms(water);
+                    }
+                }
+                else {
+                g.enterRoom(p, "north");
+                System.out.println("You entered the room");
+                System.out.println(p.getRoom().getDescription());
+                }
             }
          //  if (g.getNeighbor("north") == null) 
             else {
@@ -233,7 +254,8 @@ public class Game {
             System.out.println("no room exists in that direction");
         } }
         else {
-            System.out.println("invalid input");
+            System.out.println("Invalid input. Please try again.");
+            p.changeRooms(cavern);
         }
         //if so, move and unlock and all the key things
 
@@ -255,6 +277,9 @@ public class Game {
      //  Room start = new Room("Game starting location. Dark cavern with glowing golden gates.", true, false);
         Scanner input = new Scanner(System.in);
        // Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
+       System.out.println("There's an enemy in this room... but wait- do you have your armor? If you don't, you'll surely perish. If you have your armor, type Y. If not, type N to run away");
+       String hI = input.next();
+       if (hI.equals("Y")) {
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
         String f = input.nextLine();
         if (f.equals("R")) {
@@ -268,20 +293,32 @@ public class Game {
                 p.attack(e);
             }
             else {
-                System.out.println("The basilisk attacks several more times- you've lost all your lives.");
+                System.out.println("The basilisk attacks several more times- you've lost all your lives. The game is over.");
                 System.exit(0);
             }
             e.attack(p);
             System.out.println("The basilisk appears weak, though you have lost two lives. Do you want to attack again? Type Y for yes and N for no");
              if (input.nextLine().equals("Y")) {
                 p.attack(e);
+                System.out.println("The basilisk falls to the ground, defeated. You're a regular Harry Potter!");
+                System.out.println("Now that the basilisk is gone, you see a light at the end of the tunnel. You race towards it and find yourslf in the warm sunlight. You've escaped the caves!");
+                System.exit(0);
             }
             else {
-                System.out.println("The basilisk attacks you two more times and you lose two more lives. Then, it runs away.");
-                e.attack(p);
-                e.attack(p);
+                System.out.println("The basilisk summons some strength and attacks until you have lost all of your lives. The game is over.");
+                System.exit(0);
             }
         }
+       }
+       else if (hI.equals("N")) {
+            p.changeRooms(start);
+            System.out.println("You're back in the starting room. Try to make better choices this time.");
+       }
+       else {
+            System.out.println("Invalid input, try again.");
+            p.changeRooms(island);
+       }
+      
 
     } }
 
