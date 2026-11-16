@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Game {
    
     Room start = new Room("You find yourself in a dark cavern. Ahead of you stand two glowing golden gates.", true, false);
+        Room island = new Room("You look up. An enormous basilisk looms over you. It is at least ten times your size. Good luck.", false, true);
 
   //CHANGED GAME TO ONE METHOD, REFACTORED CODE TO BE MORE CONCISE AND ACTUALLY WORK
 
@@ -17,7 +18,7 @@ public class Game {
         Room green = new Room("You find yourself in a room that looks like a jungle. There is thick green foliage everywhere, and the air is humid.", true, false);
         Room blue = new Room("You find yourself in a room with a huge turquoise lake in it,which flows into a mysterious cavern further onwards. You shiver. It's frigid. And the water seems to be rising.", true, false);
         Room water = new Room("A river branches off from the lake, flowing into a mysterious cavern. The hairs on your arm stand up and you feel the fight approaching.", false, false);
-        Room island = new Room("You look up. An enormous basilisk looms over you. It is at least ten times your size. Good luck.", false, true);
+      //  Room island = new Room("You look up. An enormous basilisk looms over you. It is at least ten times your size. Good luck.", false, true);
 
        
         
@@ -281,15 +282,16 @@ public class Game {
        String hI = input.next();
        if (hI.equals("Y")) {
         System.out.println("A basilisk approaches! Choose to run away or fight back. Enter R to run away or F to fight back");
-        String f = input.nextLine();
-        if (f.equals("R")) {
+        String f = input.next();
+        if (f.equals("R")) { //ISSUE
             p.changeRooms(start);
+            System.out.println("COWARDS WILL NEVER ESCAPE. THE GAME HAS BEEN RESTARTED.");
         }
         else if (f.equals("F")) {
             p.attack(e);
             e.attack(p);
             System.out.println("You've been hit and lost one life! Do you want to attack again? Type Y for yes and N for no");
-            if (input.nextLine().equals("Y")) {
+            if (input.next().equals("Y")) {
                 p.attack(e);
             }
             else {
@@ -298,7 +300,7 @@ public class Game {
             }
             e.attack(p);
             System.out.println("The basilisk appears weak, though you have lost two lives. Do you want to attack again? Type Y for yes and N for no");
-             if (input.nextLine().equals("Y")) {
+             if (input.next().equals("Y")) {
                 p.attack(e);
                 System.out.println("The basilisk falls to the ground, defeated. You're a regular Harry Potter!");
                 System.out.println("Now that the basilisk is gone, you see a light at the end of the tunnel. You race towards it and find yourslf in the warm sunlight. You've escaped the caves!");
